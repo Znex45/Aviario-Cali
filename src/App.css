@@ -1,0 +1,448 @@
+.site-shell {
+  min-height: 100vh;
+  background-color: #071712;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(82rem, 100%);
+  min-height: 4.4rem;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 5.5rem);
+  color: #f4efe4;
+}
+
+.site-header__brand {
+  color: inherit;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.site-header p {
+  margin: 0;
+  color: rgba(244, 239, 228, 0.5);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.site-nav {
+  position: sticky;
+  z-index: 5;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.25rem, 5vw, 3.5rem);
+  min-height: 3rem;
+  padding: 0 1.25rem;
+  border-top: 1px solid rgba(244, 239, 228, 0.12);
+  border-bottom: 1px solid rgba(244, 239, 228, 0.12);
+  background: rgba(7, 23, 18, 0.93);
+  backdrop-filter: blur(12px);
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(244, 239, 228, 0.68);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: #c8dc7a;
+}
+
+.birds-section {
+  --cream: #f4efe4;
+  --lime: #c8dc7a;
+  --forest: #102e24;
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: clamp(4rem, 9vw, 7.5rem) clamp(1.25rem, 5vw, 5.5rem) 3rem;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at 50% -10%, rgba(86, 132, 87, 0.34), transparent 36rem),
+    linear-gradient(145deg, #071712 0%, #0d2a21 55%, #081b15 100%);
+}
+
+.birds-section::before,
+.birds-section::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  border: 1px solid rgba(200, 220, 122, 0.12);
+  border-radius: 50%;
+}
+
+.birds-section::before {
+  width: 34rem;
+  height: 34rem;
+  top: -20rem;
+  left: -12rem;
+}
+
+.birds-section::after {
+  width: 42rem;
+  height: 42rem;
+  right: -26rem;
+  bottom: -22rem;
+}
+
+.birds-section__glow {
+  position: absolute;
+  z-index: -1;
+  top: 3rem;
+  left: 50%;
+  width: min(72rem, 95vw);
+  height: 16rem;
+  transform: translateX(-50%);
+  background: rgba(116, 151, 91, 0.1);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.birds-section__header {
+  width: min(54rem, 100%);
+  margin: 0 auto clamp(2.7rem, 6vw, 5rem);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 1.2rem;
+  color: var(--lime);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.birds-section h1 {
+  max-width: 48rem;
+  margin: 0 auto;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.65rem, 6vw, 5.7rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.birds-section__intro {
+  max-width: 38rem;
+  margin: 1.5rem auto 0;
+  color: rgba(244, 239, 228, 0.65);
+  font-size: clamp(0.94rem, 1.5vw, 1.05rem);
+  line-height: 1.75;
+  text-wrap: balance;
+}
+
+.birds-section__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
+  color: rgba(244, 239, 228, 0.38);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.birds-section__hint span {
+  width: 2.4rem;
+  height: 1px;
+  background-color: rgba(200, 220, 122, 0.3);
+}
+
+.bird-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.8vw, 1.6rem);
+  width: min(82rem, 100%);
+  margin: 0 auto;
+}
+
+.bird-card-wrap {
+  min-width: 0;
+  perspective: 900px;
+  outline: none;
+}
+
+.bird-card {
+  position: relative;
+  height: clamp(25rem, 37vw, 34rem);
+  overflow: hidden;
+  border: 1px solid rgba(244, 239, 228, 0.18);
+  border-radius: 0.35rem;
+  background-color: #183b2e;
+  box-shadow: 0 1.6rem 3.6rem rgba(0, 0, 0, 0.25);
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  transform-style: preserve-3d;
+  transition:
+    transform 600ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 450ms ease,
+    box-shadow 600ms ease;
+  will-change: transform;
+}
+
+.bird-card-wrap:hover .bird-card,
+.bird-card-wrap:focus-visible .bird-card,
+.bird-card-wrap:focus-within .bird-card {
+  border-color: rgba(200, 220, 122, 0.6);
+  box-shadow:
+    0 2rem 4.5rem rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(200, 220, 122, 0.15);
+}
+
+.bird-card-wrap:focus-visible .bird-card {
+  outline: 2px solid var(--lime);
+  outline-offset: 4px;
+}
+
+.bird-card__image {
+  position: absolute;
+  inset: -1.6rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: saturate(0.82) brightness(0.8);
+  transform: translate3d(var(--move-x), var(--move-y), 0) scale(1.06);
+  transition:
+    transform 600ms cubic-bezier(0.23, 1, 0.32, 1),
+    filter 650ms ease;
+  will-change: transform;
+}
+
+.bird-card-wrap:hover .bird-card__image,
+.bird-card-wrap:focus-visible .bird-card__image,
+.bird-card-wrap:focus-within .bird-card__image {
+  filter: saturate(1.05) brightness(0.9);
+}
+
+.bird-card__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(3, 16, 12, 0.18) 0%, transparent 34%),
+    linear-gradient(to top, rgba(4, 19, 14, 0.97) 0%, rgba(4, 19, 14, 0.46) 42%, transparent 72%);
+  transition: opacity 550ms ease;
+}
+
+.bird-card__topline {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  left: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.61rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.bird-card__info {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: clamp(1.25rem, 2vw, 1.8rem);
+  transform: translateY(5.4rem);
+  transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.bird-card-wrap:hover .bird-card__info,
+.bird-card-wrap:focus-visible .bird-card__info,
+.bird-card-wrap:focus-within .bird-card__info {
+  transform: translateY(0);
+}
+
+.bird-card__alias {
+  min-height: 1em;
+  margin: 0 0 0.55rem;
+  color: var(--lime);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bird-card__info h2 {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.65rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.bird-card__scientific {
+  margin: 0.55rem 0 0;
+  color: rgba(244, 239, 228, 0.67);
+  font-size: 0.84rem;
+  letter-spacing: 0.025em;
+}
+
+.bird-card__description {
+  display: -webkit-box;
+  min-height: 3.9rem;
+  margin: 1.1rem 0 0;
+  overflow: hidden;
+  color: rgba(244, 239, 228, 0.8);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  opacity: 0;
+  transform: translateY(0.7rem);
+  transition:
+    opacity 420ms 80ms ease,
+    transform 500ms 80ms ease;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.bird-card__credit {
+  display: block;
+  width: fit-content;
+  margin-top: 0.8rem;
+  color: rgba(200, 220, 122, 0.78);
+  font-size: 0.6rem;
+  line-height: 1.35;
+  opacity: 0;
+  text-decoration-color: rgba(200, 220, 122, 0.32);
+  text-underline-offset: 0.22rem;
+  transform: translateY(0.7rem);
+  transition:
+    color 180ms ease,
+    opacity 420ms 140ms ease,
+    transform 500ms 140ms ease;
+}
+
+.bird-card__credit:hover {
+  color: var(--cream);
+}
+
+.bird-card-wrap:hover .bird-card__description,
+.bird-card-wrap:hover .bird-card__credit,
+.bird-card-wrap:focus-visible .bird-card__description,
+.bird-card-wrap:focus-visible .bird-card__credit,
+.bird-card-wrap:focus-within .bird-card__description,
+.bird-card-wrap:focus-within .bird-card__credit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.birds-section__source-note {
+  margin: 2rem auto 0;
+  color: rgba(244, 239, 228, 0.38);
+  font-size: 0.68rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(82rem, 100%);
+  margin: 0 auto;
+  padding: 1.5rem clamp(1.25rem, 5vw, 5.5rem) 2.1rem;
+  color: rgba(244, 239, 228, 0.45);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 1050px) {
+  .bird-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(44rem, 100%);
+  }
+
+  .bird-card {
+    height: min(34rem, 67vw);
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header {
+    min-height: 4rem;
+  }
+
+  .site-header p {
+    display: none;
+  }
+
+  .site-footer {
+    display: block;
+    padding-top: 1.25rem;
+  }
+
+  .site-footer p + p {
+    margin-top: 0.25rem;
+  }
+
+  .birds-section {
+    padding: 3.5rem 1rem 2rem;
+  }
+
+  .birds-section__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .birds-section__hint {
+    display: none;
+  }
+
+  .bird-grid {
+    grid-template-columns: 1fr;
+    width: min(25rem, 100%);
+  }
+
+  .bird-card {
+    height: min(35rem, 132vw);
+  }
+
+  .bird-card__info {
+    transform: translateY(0);
+  }
+
+  .bird-card__description,
+  .bird-card__credit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bird-card,
+  .bird-card__image,
+  .bird-card__info,
+  .bird-card__description,
+  .bird-card__credit {
+    transition-duration: 1ms;
+  }
+
+  .bird-card {
+    transform: none;
+  }
+
+  .bird-card__image {
+    transform: scale(1.06);
+  }
+}
