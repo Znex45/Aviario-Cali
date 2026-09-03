@@ -58,7 +58,7 @@ const birds = [
   },
 ]
 
-function BirdCard({ bird, number }) {
+function BirdCard({ bird, isSelected, number, onSelect }) {
   const cardRef = useRef(null)
   const leaveTimer = useRef(null)
   const [transform, setTransform] = useState({ x: 0, y: 0 })
@@ -86,9 +86,18 @@ function BirdCard({ bird, number }) {
 
   const cancelReset = () => window.clearTimeout(leaveTimer.current)
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      onSelect(bird)
+    }
+  }
+
   return (
     <article
-      className="bird-card-wrap"
+      className={`bird-card-wrap${isSelected ? ' bird-card-wrap--selected' : ''}`}
+      onClick={() => onSelect(bird)}
+      onKeyDown={handleKeyDown}
       onMouseMove={handleMouseMove}
       onMouseEnter={cancelReset}
       onMouseLeave={resetCard}
@@ -100,6 +109,7 @@ function BirdCard({ bird, number }) {
         '--rotate-y': `${transform.x * 20}deg`,
         '--move-x': `${transform.x * -26}px`,
         '--move-y': `${transform.y * -26}px`,
+        viewTransitionName: `bird-card-${number}`,
       }}
       tabIndex="0"
     >
@@ -138,6 +148,7 @@ function BirdCard({ bird, number }) {
           <a
             className="bird-card__credit"
             href={bird.source}
+            onClick={(event) => event.stopPropagation()}
             target="_blank"
             rel="noreferrer"
             aria-label={`Ver la fuente de la fotografía de ${bird.commonName}`}
@@ -151,7 +162,151 @@ function BirdCard({ bird, number }) {
   )
 }
 
+function PendingText() {
+  return <span className="pending-text">Pendiente por completar</span>
+}
+
+function BirdDetails({ bird, isOpen, onBack }) {
+  return (
+    <aside
+      aria-hidden={!isOpen}
+      aria-label={`Ficha de ${bird.commonName}`}
+      className={`bird-details${isOpen ? ' bird-details--open' : ''}`}
+    >
+      <div className="bird-details__inner">
+        <div className="bird-details__heading">
+          <div>
+            <p className="eyebrow">Ficha de la especie</p>
+            <h2>{bird.commonName}</h2>
+            <p>
+              <i>{bird.scientificName}</i>
+            </p>
+          </div>
+          <button
+            className="back-button"
+            onClick={onBack}
+            tabIndex={isOpen ? 0 : -1}
+            type="button"
+          >
+            <span aria-hidden="true">←</span>
+            Volver a las tarjetas
+          </button>
+        </div>
+
+        <div className="bird-details__content">
+          <section className="detail-section detail-section--profile">
+            <h3>Información general</h3>
+            <dl className="bird-facts">
+              <div>
+                <dt>Nombre común</dt>
+                <dd><PendingText /></dd>
+              </div>
+              <div>
+                <dt>Nombre científico</dt>
+                <dd><PendingText /></dd>
+              </div>
+              <div>
+                <dt>Nombre en inglés</dt>
+                <dd><PendingText /></dd>
+              </div>
+              <div>
+                <dt>Condición</dt>
+                <dd><PendingText /></dd>
+              </div>
+              <div>
+                <dt>Tamaño aproximado</dt>
+                <dd><PendingText /></dd>
+              </div>
+              <div>
+                <dt>Hábitat</dt>
+                <dd><PendingText /></dd>
+              </div>
+            </dl>
+          </section>
+
+          <section className="detail-section detail-section--video">
+            <h3>Video</h3>
+            <div className="media-placeholder media-placeholder--video">
+              <span aria-hidden="true">▶</span>
+              <p>Video pendiente de agregar</p>
+            </div>
+          </section>
+
+          <section className="detail-section detail-section--audio">
+            <h3>Canto o vocalización</h3>
+            <div className="media-placeholder media-placeholder--audio">
+              <span aria-hidden="true">⌁</span>
+              <p>Audio pendiente de agregar</p>
+            </div>
+          </section>
+
+          <section className="detail-section">
+            <h3>¿Dónde observarla en Cali?</h3>
+            <div className="media-placeholder media-placeholder--map">
+              <span aria-hidden="true">⌖</span>
+              <p>Mapa de avistamientos pendiente de agregar</p>
+            </div>
+          </section>
+
+          <section className="detail-section">
+            <h3>Probabilidad de avistamiento</h3>
+            <ul className="sighting-list">
+              <li><span>Alta</span><PendingText /></li>
+              <li><span>Media</span><PendingText /></li>
+              <li><span>Baja</span><PendingText /></li>
+            </ul>
+          </section>
+
+          <section className="detail-section">
+            <h3>Horario recomendado</h3>
+            <p className="detail-section__empty"><PendingText /></p>
+          </section>
+
+          <section className="detail-section">
+            <h3>Fuentes y créditos</h3>
+            <p className="detail-section__empty"><PendingText /></p>
+          </section>
+        </div>
+      </div>
+    </aside>
+  )
+}
+
 function App() {
+  const [selectedBird, setSelectedBird] = useState(null)
+  const [isDetailOpen, setIsDetailOpen] = useState(false)
+  const closeTimer = useRef(null)
+
+  useEffect(
+    () => () => window.clearTimeout(closeTimer.current),
+    [],
+  )
+
+  const updateView = (callback) => {
+    if (typeof document.startViewTransition === 'function') {
+      document.startViewTransition(callback)
+      return
+    }
+
+    callback()
+  }
+
+  const selectBird = (bird) => {
+    window.clearTimeout(closeTimer.current)
+    updateView(() => {
+      setSelectedBird(bird)
+      setIsDetailOpen(true)
+    })
+  }
+
+  const closeDetails = () => {
+    setIsDetailOpen(false)
+    window.clearTimeout(closeTimer.current)
+    closeTimer.current = window.setTimeout(() => {
+      updateView(() => setSelectedBird(null))
+    }, 360)
+  }
+
   return (
     <div className="site-shell">
       <header className="site-header" id="inicio">
@@ -184,10 +339,29 @@ function App() {
           </div>
         </section>
 
-        <section className="bird-grid" aria-label="Galería de aves de Cali">
-          {birds.map((bird, index) => (
-            <BirdCard key={bird.scientificName} bird={bird} number={index + 1} />
-          ))}
+        <section
+          className={`bird-explorer${selectedBird ? ' bird-explorer--selected' : ''}`}
+          aria-label="Galería de aves de Cali"
+        >
+          <div className="bird-grid">
+            {birds.map((bird, index) => (
+              <BirdCard
+                bird={bird}
+                isSelected={selectedBird?.scientificName === bird.scientificName}
+                key={bird.scientificName}
+                number={index + 1}
+                onSelect={selectBird}
+              />
+            ))}
+          </div>
+
+          {selectedBird && (
+            <BirdDetails
+              bird={selectedBird}
+              isOpen={isDetailOpen}
+              onBack={closeDetails}
+            />
+          )}
         </section>
 
         <p className="birds-section__source-note">
