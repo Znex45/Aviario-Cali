@@ -122,7 +122,15 @@ function BirdCard({ bird, number }) {
 
         <div className="bird-card__info">
           {bird.aliases && <p className="bird-card__alias">{bird.aliases}</p>}
-          <h2>{bird.commonName}</h2>
+          <h2
+            className={
+              bird.commonName === 'Atrapamoscas pechirrojo'
+                ? 'bird-card__title--wide'
+                : undefined
+            }
+          >
+            {bird.commonName}
+          </h2>
           <p className="bird-card__scientific">
             <i>{bird.scientificName}</i>
           </p>
