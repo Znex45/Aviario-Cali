@@ -58,6 +58,44 @@ const birds = [
   },
 ]
 
+const fallingLeaves = [
+  { left: '3%', delay: '-8s', duration: '15s', drift: '8rem', sway: '-2rem', scale: '0.72' },
+  { left: '10%', delay: '-2s', duration: '13s', drift: '-6rem', sway: '3rem', scale: '0.52' },
+  { left: '18%', delay: '-11s', duration: '17s', drift: '5rem', sway: '-4rem', scale: '0.9' },
+  { left: '27%', delay: '-5s', duration: '14s', drift: '-8rem', sway: '2rem', scale: '0.62' },
+  { left: '35%', delay: '-14s', duration: '18s', drift: '7rem', sway: '-3rem', scale: '0.78' },
+  { left: '43%', delay: '-1s', duration: '16s', drift: '-5rem', sway: '4rem', scale: '0.48' },
+  { left: '51%', delay: '-9s', duration: '14s', drift: '9rem', sway: '-2rem', scale: '0.84' },
+  { left: '59%', delay: '-4s', duration: '17s', drift: '-7rem', sway: '3rem', scale: '0.58' },
+  { left: '66%', delay: '-13s', duration: '15s', drift: '6rem', sway: '-4rem', scale: '0.74' },
+  { left: '73%', delay: '-6s', duration: '18s', drift: '-9rem', sway: '2rem', scale: '0.92' },
+  { left: '80%', delay: '-16s', duration: '19s', drift: '5rem', sway: '-3rem', scale: '0.55' },
+  { left: '87%', delay: '-3s', duration: '14s', drift: '-6rem', sway: '4rem', scale: '0.7' },
+  { left: '93%', delay: '-10s', duration: '16s', drift: '7rem', sway: '-2rem', scale: '0.82' },
+  { left: '23%', delay: '-17s', duration: '20s', drift: '-5rem', sway: '3rem', scale: '0.46' },
+  { left: '62%', delay: '-7s', duration: '19s', drift: '8rem', sway: '-4rem', scale: '0.66' },
+]
+
+function FallingLeaves() {
+  return (
+    <div id="leaves" aria-hidden="true">
+      {fallingLeaves.map((leaf, index) => (
+        <i
+          key={index}
+          style={{
+            '--leaf-left': leaf.left,
+            '--leaf-delay': leaf.delay,
+            '--leaf-duration': leaf.duration,
+            '--leaf-drift': leaf.drift,
+            '--leaf-sway': leaf.sway,
+            '--leaf-scale': leaf.scale,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 function BirdCard({ bird, isSelected, number, onSelect }) {
   const cardRef = useRef(null)
   const leaveTimer = useRef(null)
@@ -273,6 +311,7 @@ function BirdDetails({ bird, isOpen, onBack }) {
 }
 
 function App() {
+  const [isGalleryVisible, setIsGalleryVisible] = useState(false)
   const [selectedBird, setSelectedBird] = useState(null)
   const [isDetailOpen, setIsDetailOpen] = useState(false)
   const closeTimer = useRef(null)
@@ -307,6 +346,21 @@ function App() {
     }, 360)
   }
 
+  const showGallery = () => {
+    setIsGalleryVisible(true)
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+        document.getElementById('aves')?.scrollIntoView({
+          behavior: reduceMotion ? 'auto' : 'smooth',
+          block: 'start',
+        })
+      })
+    })
+  }
+
   return (
     <div className="site-shell">
       <header className="site-header" id="inicio">
@@ -318,56 +372,82 @@ function App() {
 
       <nav className="site-nav" aria-label="Navegación principal">
         <a href="#inicio">Inicio</a>
-        <a href="#aves">Aves</a>
+        <a
+          href="#aves"
+          onClick={(event) => {
+            event.preventDefault()
+            showGallery()
+          }}
+        >
+          Aves
+        </a>
         <a href="#creditos">Créditos</a>
       </nav>
 
-      <main className="birds-section" id="aves">
+      <main className="birds-section">
         <div className="birds-section__glow" aria-hidden="true" />
+        <FallingLeaves />
 
-        <section className="birds-section__header" aria-labelledby="gallery-title">
-          <p className="eyebrow">Guía de avistamiento · Cali</p>
-          <h1 id="gallery-title">Aves que viven entre nosotros</h1>
-          <p className="birds-section__intro">
-            Acércate a cada tarjeta para descubrir cuatro especies que llenan de
-            color y sonido nuestros paisajes.
-          </p>
-          <div className="birds-section__hint" aria-hidden="true">
-            <span />
-            Mueve el cursor sobre las tarjetas
-            <span />
+        <section className="birds-hero" aria-labelledby="gallery-title">
+          <div className="birds-section__header">
+            <p className="eyebrow">Guía de avistamiento · Cali</p>
+            <h1 id="gallery-title">Aves que viven entre nosotros</h1>
+            <p className="birds-section__intro">
+              Acércate a cada tarjeta para descubrir cuatro especies que llenan de
+              color y sonido nuestros paisajes.
+            </p>
+            <button
+              aria-controls="aves"
+              aria-expanded={isGalleryVisible}
+              className="continue-button"
+              onClick={showGallery}
+              type="button"
+            >
+              Continuar
+              <span aria-hidden="true">↓</span>
+            </button>
           </div>
         </section>
 
-        <section
-          className={`bird-explorer${selectedBird ? ' bird-explorer--selected' : ''}`}
-          aria-label="Galería de aves de Cali"
-        >
-          <div className="bird-grid">
-            {birds.map((bird, index) => (
-              <BirdCard
-                bird={bird}
-                isSelected={selectedBird?.scientificName === bird.scientificName}
-                key={bird.scientificName}
-                number={index + 1}
-                onSelect={selectBird}
-              />
-            ))}
+        {isGalleryVisible && (
+          <div className="bird-gallery" id="aves">
+            <div className="birds-section__hint" aria-hidden="true">
+              <span />
+              Mueve el cursor sobre las tarjetas
+              <span />
+            </div>
+
+            <section
+              className={`bird-explorer${selectedBird ? ' bird-explorer--selected' : ''}`}
+              aria-label="Galería de aves de Cali"
+            >
+              <div className="bird-grid">
+                {birds.map((bird, index) => (
+                  <BirdCard
+                    bird={bird}
+                    isSelected={selectedBird?.scientificName === bird.scientificName}
+                    key={bird.scientificName}
+                    number={index + 1}
+                    onSelect={selectBird}
+                  />
+                ))}
+              </div>
+
+              {selectedBird && (
+                <BirdDetails
+                  bird={selectedBird}
+                  isOpen={isDetailOpen}
+                  onBack={closeDetails}
+                />
+              )}
+            </section>
+
+            <p className="birds-section__source-note">
+              Fotografías de Wikimedia Commons. Consulta la autoría y licencia en
+              cada tarjeta.
+            </p>
           </div>
-
-          {selectedBird && (
-            <BirdDetails
-              bird={selectedBird}
-              isOpen={isDetailOpen}
-              onBack={closeDetails}
-            />
-          )}
-        </section>
-
-        <p className="birds-section__source-note">
-          Fotografías de Wikimedia Commons. Consulta la autoría y licencia en
-          cada tarjeta.
-        </p>
+        )}
       </main>
 
       <footer className="site-footer" id="creditos">
