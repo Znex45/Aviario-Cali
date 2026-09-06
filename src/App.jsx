@@ -13,50 +13,187 @@ const birds = [
     commonName: 'Atrapamoscas pechirrojo',
     aliases: 'También llamado titiribí pechirrojo',
     scientificName: 'Pyrocephalus rubinus',
+    englishName: 'Vermilion Flycatcher',
+    conservation: 'Preocupación Menor (LC)',
+    size: '13–14 cm de longitud; 11–14 g aprox.',
+    habitat:
+      'Áreas abiertas, parques, jardines, bordes de bosque y ambientes ribereños. En Cali está incluido entre las aves que necesitan espacios de naturaleza.',
+    caliStatus: 'Necesita espacios de naturaleza',
     description:
-      'El macho destaca por su intenso plumaje rojo. Desde una percha visible emprende vuelos cortos para atrapar insectos.',
+      'Pequeño atrapamoscas de hábitats abiertos. El macho adulto presenta rojo intenso en la corona y las partes inferiores; se alimenta principalmente de insectos que captura desde perchas expuestas.',
     image: atrapamoscasImage,
     imagePosition: '48% center',
     photographer: 'Alejandro Bayer Tamayo',
     license: 'CC BY-SA 2.0',
     source:
       'https://commons.wikimedia.org/wiki/File:Pyrocephalus_rubinus_(Petirrojo,_Pechirrojo,_Cardenal)_-_Macho_adulto_(14294083895).jpg',
+    videoEmbed: 'https://www.youtube.com/embed/_8kToUL0MjE',
+    videoTitle: 'Vermilion Flycatcher (Pyrocephalus rubinus)',
+    videoSource: 'YouTube',
+    videoSourceUrl: 'https://www.youtube.com/watch?v=_8kToUL0MjE',
+    audioEmbed: 'https://macaulaylibrary.org/audio/188210',
+    audioTitle: 'Vermilion Flycatcher — canto',
+    audioSource: 'Macaulay Library · ML188210',
+    audioSourceUrl: 'https://macaulaylibrary.org/asset/188210',
+    observationLevel: 'Media',
+    observationText:
+      'Más favorable en espacios verdes y bordes abiertos; la guía de Cali la clasifica entre las especies que requieren espacios de naturaleza.',
+    places: [
+      {
+        name: 'Ecoparque Río Pance',
+        note: 'Vegetación ribereña y áreas suburbanas con alta diversidad de aves.',
+        url: 'https://ecopedia.cvc.gov.co/node/363',
+      },
+      {
+        name: 'Pance y zona de influencia de Farallones',
+        note: 'Áreas abiertas y transición de bosque del piedemonte occidental.',
+        url: 'https://www.parquesnacionales.gov.co/nuestros-parques/pnn-farallones-de-cali/',
+      },
+    ],
+    sources: [
+      { label: 'eBird / Cornell Lab', url: 'https://ebird.org/species/verfly' },
+      { label: 'Guía ilustrada de aves de Cali — CVC', url: 'https://ecopedia.cvc.gov.co/sites/default/files/archivosAdjuntos/libro_de_aves_de_cali.pdf' },
+      { label: 'Universidad Icesi — Aves de Cali', url: 'https://www.icesi.edu.co/editorial/aves-de-cali/' },
+      { label: 'Cornell Lab — Aves de Sibundoy', url: 'https://www.birds.cornell.edu/latam/wp-content/uploads/2023/09/Aves-de-sibundoy-2014-1.pdf' },
+    ],
   },
   {
     commonName: 'Colibrí cola canela',
     scientificName: 'Amazilia tzacatl',
+    englishName: 'Rufous-tailed Hummingbird',
+    conservation: 'Preocupación Menor (LC)',
+    size: '10–12 cm de longitud; aprox. 5,2 g.',
+    habitat:
+      'Bordes de bosque húmedo, vegetación secundaria, claros, jardines y plantaciones. En Colombia puede encontrarse desde tierras bajas hasta zonas andinas.',
+    caliStatus: 'Necesita espacios de naturaleza',
     description:
-      'Un colibrí verde de cola rojiza que visita flores y jardines. Su vuelo veloz lo convierte en un polinizador muy activo.',
+      'Colibrí mediano de color verde con cola canela. Visita flores y comederos, y cumple un papel importante como polinizador mientras también consume pequeños insectos.',
     image: colibriImage,
     imagePosition: '55% center',
     photographer: 'Jerry Oldenettel',
     license: 'CC BY-SA 2.0',
-    source:
-      'https://commons.wikimedia.org/wiki/File:Amazilia_tzacatl.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Amazilia_tzacatl.jpg',
+    videoEmbed: 'https://www.youtube.com/embed/0O8AFZpI94Q',
+    videoTitle: 'Rufous-tailed Hummingbird — Amazilia tzacatl — Colombia',
+    videoSource: 'YouTube · Bogota Birding & Colombia Wildlife Tours',
+    videoSourceUrl: 'https://www.youtube.com/watch?v=0O8AFZpI94Q',
+    audioEmbed: 'https://xeno-canto.org/862598/embed',
+    audioTitle: 'Rufous-tailed Hummingbird — llamada',
+    audioSource: 'Xeno-canto · XC862598',
+    audioSourceUrl: 'https://xeno-canto.org/862598',
+    observationLevel: 'Media-Alta',
+    observationText:
+      'Hay registros en Valle del Cauca y la especie forma parte de las aves de Cali asociadas a espacios de naturaleza.',
+    places: [
+      {
+        name: 'Ecoparque Río Pance',
+        note: 'Bosques suburbanos, vegetación ribereña y claros favorables para colibríes.',
+        url: 'https://ecopedia.cvc.gov.co/node/363',
+      },
+      {
+        name: 'PNN Farallones de Cali',
+        note: 'Amplio gradiente altitudinal y alta diversidad de aves; el sector de Pance es de especial interés.',
+        url: 'https://www.parquesnacionales.gov.co/nuestros-parques/pnn-farallones-de-cali/',
+      },
+    ],
+    sources: [
+      { label: 'eBird / Cornell Lab', url: 'https://ebird.org/species/rtlhum' },
+      { label: 'Animal Diversity Web', url: 'https://animaldiversity.org/accounts/Amazilia_tzacatl/' },
+      { label: 'Universidad Icesi — Aves de Cali', url: 'https://www.icesi.edu.co/editorial/aves-de-cali/' },
+      { label: 'Macaulay Library — registros en Colombia', url: 'https://media.ebird.org/es-ES/catalog?birdOnly=true&mediaType=photo&regionCode=CO&taxonCode=rtlhum&view=list' },
+    ],
   },
   {
     commonName: 'Bichofué gritón',
     scientificName: 'Pitangus sulphuratus',
+    englishName: 'Great Kiskadee',
+    conservation: 'Preocupación Menor (LC)',
+    size: '21–26 cm de longitud.',
+    habitat:
+      'Ambientes abiertos, zonas rurales y urbanas, parques, matorrales, arboledas y bordes de ríos o lagos. Es especialmente adaptable a paisajes urbanos.',
+    caliStatus: 'Aprovecha recursos urbanos',
     description:
-      'Se reconoce por el pecho amarillo y la cabeza blanca y negra. Su potente canto “bi-cho-fué” es común en zonas abiertas.',
+      'Tirano grande y muy visible, con pecho amarillo, cabeza negra y blanca y dorso pardo. Es omnívoro y consume insectos, frutos, pequeños vertebrados y ocasionalmente peces.',
     image: bichofueImage,
     imagePosition: '45% center',
     photographer: 'Donald Hobern',
     license: 'CC BY 2.0',
-    source:
-      'https://commons.wikimedia.org/wiki/File:Pitangus_sulphuratus_(30659959896).jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Pitangus_sulphuratus_(30659959896).jpg',
+    videoEmbed: 'https://www.youtube.com/embed/cqyJAYlSIyc',
+    videoTitle: 'Bichofué — Pitangus sulphuratus — Colombia',
+    videoSource: 'YouTube · Dayro Longas',
+    videoSourceUrl: 'https://www.youtube.com/watch?v=cqyJAYlSIyc',
+    audioEmbed: 'https://xeno-canto.org/593047/embed',
+    audioTitle: 'Bichofué — canto registrado en Cali',
+    audioSource: 'Xeno-canto · XC593047',
+    audioSourceUrl: 'https://xeno-canto.org/593047',
+    observationLevel: 'Alta',
+    observationText:
+      'Es una de las especies de Cali que aprovechan recursos urbanos y es común en ambientes abiertos; por ello es de las más fáciles de detectar.',
+    places: [
+      {
+        name: 'Ecoparque Río Pance',
+        note: 'El ecoparque registra una alta diversidad y facilita la observación de aves en ambientes suburbanos y ribereños.',
+        url: 'https://ecopedia.cvc.gov.co/node/363',
+      },
+      {
+        name: 'Parques y zonas verdes urbanas de Cali',
+        note: 'Tolera ambientes urbanos, especialmente donde hay árboles, áreas abiertas y cuerpos de agua cercanos.',
+        url: 'https://www.icesi.edu.co/editorial/aves-de-cali/',
+      },
+    ],
+    sources: [
+      { label: 'eBird / Cornell Lab', url: 'https://ebird.org/species/grekis' },
+      { label: 'Animal Diversity Web', url: 'https://animaldiversity.org/accounts/Pitangus_sulphuratus/' },
+      { label: 'Universidad Icesi — Aves de Cali', url: 'https://www.icesi.edu.co/editorial/aves-de-cali/' },
+      { label: 'SIB Colombia / Parques Nacionales', url: 'https://sib.gob.ar/especies/Pitangus-sulphuratus' },
+    ],
   },
   {
     commonName: 'Mielero común',
     scientificName: 'Coereba flaveola',
+    englishName: 'Bananaquit',
+    conservation: 'Preocupación Menor (LC)',
+    size: 'Aproximadamente 11 cm de longitud.',
+    habitat:
+      'Zonas tropicales con cobertura vegetal: jardines, áreas abiertas con arbustos, bosques secundarios y bordes de bosque. En Cali está clasificado entre las aves que necesitan espacios de naturaleza.',
+    caliStatus: 'Necesita espacios de naturaleza',
     description:
-      'Pequeño y muy inquieto, usa su pico curvo para obtener néctar. También se alimenta de frutos y pequeños insectos.',
+      'Ave pequeña, activa y de pico curvado. Busca principalmente néctar en flores, además de frutos y pequeños insectos; suele moverse sola, en pareja o en pequeños grupos.',
     image: mieleroImage,
     imagePosition: 'center',
     photographer: 'Félix Uribe',
     license: 'CC BY-SA 2.0',
-    source:
-      'https://commons.wikimedia.org/wiki/File:Coereba_flaveola_Mielero_com%C3%BAn_Bananaquit_(9765564882).jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Coereba_flaveola_Mielero_com%C3%BAn_Bananaquit_(9765564882).jpg',
+    videoEmbed: 'https://www.youtube.com/embed/EHm0Q7ZQHcM',
+    videoTitle: 'Bananaquits — Coereba flaveola — Colombia',
+    videoSource: 'YouTube · Birdfun',
+    videoSourceUrl: 'https://www.youtube.com/watch?v=EHm0Q7ZQHcM',
+    audioEmbed: 'https://xeno-canto.org/830531/embed',
+    audioTitle: 'Mielero común — canto registrado en Palmira, Valle del Cauca',
+    audioSource: 'Xeno-canto · XC830531',
+    audioSourceUrl: 'https://xeno-canto.org/830531',
+    observationLevel: 'Media-Alta',
+    observationText:
+      'Es abundante y de hábitos adaptables, pero para esta guía se priorizan los espacios naturales y jardines con flores.',
+    places: [
+      {
+        name: 'Ecoparque Río Pance',
+        note: 'La vegetación ribereña y los fragmentos de bosque ofrecen recursos para aves nectarívoras.',
+        url: 'https://ecopedia.cvc.gov.co/node/363',
+      },
+      {
+        name: 'PNN Farallones de Cali y su zona de influencia',
+        note: 'Alta diversidad de hábitats y flora; el parque es un destino para observación de aves.',
+        url: 'https://www.parquesnacionales.gov.co/nuestros-parques/pnn-farallones-de-cali/',
+      },
+    ],
+    sources: [
+      { label: 'eBird / Cornell Lab', url: 'https://ebird.org/species/banana' },
+      { label: 'Cornell Lab — All About Birds', url: 'https://www.allaboutbirds.org/guide/Bananaquit/lifehistory' },
+      { label: 'Universidad Icesi — Aves de Cali', url: 'https://www.icesi.edu.co/editorial/aves-de-cali/' },
+      { label: 'Animal Diversity Web', url: 'https://animaldiversity.org/accounts/Coereba_flaveola/' },
+    ],
   },
 ]
 
@@ -202,10 +339,6 @@ function BirdCard({ bird, isSelected, number, onSelect }) {
   )
 }
 
-function PendingText() {
-  return <span className="pending-text">Pendiente por completar</span>
-}
-
 function BirdDetails({ bird, isOpen, onBack }) {
   return (
     <aside
@@ -218,9 +351,7 @@ function BirdDetails({ bird, isOpen, onBack }) {
           <div>
             <p className="eyebrow">Ficha de la especie</p>
             <h2>{bird.commonName}</h2>
-            <p>
-              <i>{bird.scientificName}</i>
-            </p>
+            <p><i>{bird.scientificName}</i></p>
           </div>
           <button
             className="back-button"
@@ -237,81 +368,89 @@ function BirdDetails({ bird, isOpen, onBack }) {
           <section className="detail-section detail-section--profile">
             <h3>Información general</h3>
             <dl className="bird-facts">
-              <div>
-                <dt>Nombre común</dt>
-                <dd><PendingText /></dd>
-              </div>
-              <div>
-                <dt>Nombre científico</dt>
-                <dd><PendingText /></dd>
-              </div>
-              <div>
-                <dt>Nombre en inglés</dt>
-                <dd><PendingText /></dd>
-              </div>
-              <div>
-                <dt>Condición</dt>
-                <dd><PendingText /></dd>
-              </div>
-              <div>
-                <dt>Tamaño aproximado</dt>
-                <dd><PendingText /></dd>
-              </div>
-              <div>
-                <dt>Hábitat</dt>
-                <dd><PendingText /></dd>
-              </div>
+              <div><dt>Nombre común</dt><dd>{bird.commonName}</dd></div>
+              <div><dt>Nombre científico</dt><dd><i>{bird.scientificName}</i></dd></div>
+              <div><dt>Nombre en inglés</dt><dd>{bird.englishName}</dd></div>
+              <div><dt>Condición</dt><dd>{bird.conservation}</dd></div>
+              <div><dt>Tamaño aproximado</dt><dd>{bird.size}</dd></div>
+              <div><dt>Hábitat</dt><dd>{bird.habitat}</dd></div>
+              <div><dt>Situación en Cali</dt><dd>{bird.caliStatus}</dd></div>
             </dl>
           </section>
 
           <section className="detail-section detail-section--video">
             <h3>Video</h3>
-            <div className="media-placeholder media-placeholder--video">
-              <span aria-hidden="true">▶</span>
-              <p>Video pendiente de agregar</p>
+            <div className="media-embed">
+              <iframe
+                src={bird.videoEmbed}
+                title={bird.videoTitle}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </div>
+            <a className="media-credit" href={bird.videoSourceUrl} target="_blank" rel="noreferrer">
+              {bird.videoTitle} · {bird.videoSource} ↗
+            </a>
           </section>
 
           <section className="detail-section detail-section--audio">
             <h3>Canto o vocalización</h3>
-            <div className="media-placeholder media-placeholder--audio">
-              <span aria-hidden="true">⌁</span>
-              <p>Audio pendiente de agregar</p>
+            <div className="media-embed media-embed--audio">
+              <iframe
+                src={bird.audioEmbed}
+                title={bird.audioTitle}
+                loading="lazy"
+                allow="autoplay"
+              />
             </div>
+            <a className="media-credit" href={bird.audioSourceUrl} target="_blank" rel="noreferrer">
+              {bird.audioTitle} · {bird.audioSource} ↗
+            </a>
           </section>
 
           <section className="detail-section">
             <h3>¿Dónde observarla en Cali?</h3>
-            <div className="media-placeholder media-placeholder--map">
-              <span aria-hidden="true">⌖</span>
-              <p>Mapa de avistamientos pendiente de agregar</p>
+            <div className="observation-places">
+              {bird.places.map((place) => (
+                <a key={place.name} className="observation-place" href={place.url} target="_blank" rel="noreferrer">
+                  <strong>{place.name}</strong>
+                  <span>{place.note}</span>
+                  <small>Consultar información del sitio ↗</small>
+                </a>
+              ))}
             </div>
           </section>
 
           <section className="detail-section">
             <h3>Probabilidad de avistamiento</h3>
-            <ul className="sighting-list">
-              <li><span>Alta</span><PendingText /></li>
-              <li><span>Media</span><PendingText /></li>
-              <li><span>Baja</span><PendingText /></li>
-            </ul>
+            <div className="sighting-summary">
+              <strong>{bird.observationLevel}</strong>
+              <p>{bird.observationText}</p>
+            </div>
           </section>
 
           <section className="detail-section">
             <h3>Horario recomendado</h3>
-            <p className="detail-section__empty"><PendingText /></p>
+            <p className="detail-section__empty">
+              <strong>06:00–09:00 a. m.</strong> es la franja recomendada para iniciar el recorrido, cuando la actividad de muchas aves es mayor. Para especies de espacios naturales conviene comenzar temprano y recorrer senderos con calma.
+            </p>
           </section>
 
           <section className="detail-section">
             <h3>Fuentes y créditos</h3>
-            <p className="detail-section__empty"><PendingText /></p>
+            <div className="source-list">
+              {bird.sources.map((source) => (
+                <a key={source.label} href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>
+              ))}
+              <p>Fotografía: {bird.photographer} · {bird.license} · Wikimedia Commons.</p>
+            </div>
           </section>
         </div>
       </div>
     </aside>
   )
 }
-
 function App() {
   const [isGalleryVisible, setIsGalleryVisible] = useState(false)
   const [selectedBird, setSelectedBird] = useState(null)
