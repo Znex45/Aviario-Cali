@@ -92,6 +92,11 @@
   background-color: rgba(237, 29, 36, 0.08);
 }
 
+.site-nav a[aria-current='page'] {
+  color: var(--uao-red);
+  box-shadow: inset 0 -2px var(--uao-red);
+}
+
 .birds-section {
   --cream: #fffdfa;
   --lime: #ed1d24;
@@ -246,6 +251,7 @@
   display: grid;
   min-height: calc(100svh - 7.4rem);
   padding: clamp(4rem, 9vw, 7.5rem) 0;
+  animation: gallery-reveal 700ms cubic-bezier(0.23, 1, 0.32, 1) both;
   place-items: center;
 }
 
@@ -413,7 +419,18 @@
 }
 
 .bird-explorer--selected .bird-card {
-  height: clamp(30rem, 47vw, 39rem);
+  height: min(clamp(30rem, 47vw, 39rem), calc(100svh - 5rem));
+}
+
+@media (min-width: 621px) {
+  .bird-explorer--selected .bird-grid {
+    align-self: stretch;
+  }
+
+  .bird-explorer--selected .bird-card-wrap--selected {
+    position: sticky;
+    top: max(4rem, calc(50svh + 1.5rem - clamp(15rem, 23.5vw, 19.5rem)));
+  }
 }
 
 .bird-details {
@@ -860,6 +877,18 @@
     gap: 1.25rem;
   }
 
+  .bird-details__heading {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .back-button {
+    align-self: flex-start;
+    max-width: 100%;
+    line-height: 1.25;
+    white-space: normal;
+  }
+
   .bird-details__content {
     grid-template-columns: 1fr;
   }
@@ -979,7 +1008,8 @@
     display: none;
   }
 
-  .bird-gallery {
+  .bird-gallery,
+  .birds-hero {
     animation: none;
   }
 

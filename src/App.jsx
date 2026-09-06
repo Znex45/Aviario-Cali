@@ -346,19 +346,37 @@ function App() {
     }, 360)
   }
 
-  const showGallery = () => {
-    setIsGalleryVisible(true)
-
+  const scrollToSection = (sectionId) => {
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-        document.getElementById('aves')?.scrollIntoView({
+        document.getElementById(sectionId)?.scrollIntoView({
           behavior: reduceMotion ? 'auto' : 'smooth',
           block: 'start',
         })
       })
     })
+  }
+
+  const showGallery = () => {
+    window.clearTimeout(closeTimer.current)
+    updateView(() => {
+      setIsGalleryVisible(true)
+      setIsDetailOpen(false)
+      setSelectedBird(null)
+    })
+    scrollToSection('aves')
+  }
+
+  const showHome = () => {
+    window.clearTimeout(closeTimer.current)
+    updateView(() => {
+      setIsGalleryVisible(false)
+      setIsDetailOpen(false)
+      setSelectedBird(null)
+    })
+    scrollToSection('inicio')
   }
 
   return (
@@ -371,8 +389,18 @@ function App() {
       </header>
 
       <nav className="site-nav" aria-label="Navegación principal">
-        <a href="#inicio">Inicio</a>
         <a
+          aria-current={!isGalleryVisible ? 'page' : undefined}
+          href="#inicio"
+          onClick={(event) => {
+            event.preventDefault()
+            showHome()
+          }}
+        >
+          Inicio
+        </a>
+        <a
+          aria-current={isGalleryVisible ? 'page' : undefined}
           href="#aves"
           onClick={(event) => {
             event.preventDefault()
@@ -388,26 +416,28 @@ function App() {
         <div className="birds-section__glow" aria-hidden="true" />
         <FallingLeaves />
 
-        <section className="birds-hero" aria-labelledby="gallery-title">
-          <div className="birds-section__header">
-            <p className="eyebrow">Guía de avistamiento · Cali</p>
-            <h1 id="gallery-title">Aves que viven entre nosotros</h1>
-            <p className="birds-section__intro">
-              Acércate a cada tarjeta para descubrir cuatro especies que llenan de
-              color y sonido nuestros paisajes.
-            </p>
-            <button
-              aria-controls="aves"
-              aria-expanded={isGalleryVisible}
-              className="continue-button"
-              onClick={showGallery}
-              type="button"
-            >
-              Continuar
-              <span aria-hidden="true">↓</span>
-            </button>
-          </div>
-        </section>
+        {!isGalleryVisible && (
+          <section className="birds-hero" aria-labelledby="gallery-title">
+            <div className="birds-section__header">
+              <p className="eyebrow">Guía de avistamiento · Cali</p>
+              <h1 id="gallery-title">Aves que viven entre nosotros</h1>
+              <p className="birds-section__intro">
+                Acércate a cada tarjeta para descubrir cuatro especies que llenan de
+                color y sonido nuestros paisajes.
+              </p>
+              <button
+                aria-controls="aves"
+                aria-expanded={isGalleryVisible}
+                className="continue-button"
+                onClick={showGallery}
+                type="button"
+              >
+                Continuar
+                <span aria-hidden="true">↓</span>
+              </button>
+            </div>
+          </section>
+        )}
 
         {isGalleryVisible && (
           <div className="bird-gallery" id="aves">
