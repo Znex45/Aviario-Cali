@@ -40,12 +40,22 @@
 }
 
 .site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   color: inherit;
   font-family: var(--md-sys-font-body);
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   text-decoration: none;
+}
+
+.site-header__brand img {
+  display: block;
+  width: 2.8rem;
+  height: 2.8rem;
+  object-fit: contain;
 }
 
 .site-header p {
@@ -274,6 +284,17 @@
   line-height: 1.02;
   letter-spacing: -0.04em;
   text-wrap: balance;
+}
+
+.birds-section h1.birds-section__title {
+  max-width: 54rem;
+  line-height: 0;
+}
+
+.birds-section__title img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .birds-section__intro {
@@ -925,6 +946,16 @@
 
   .site-header {
     min-height: 4rem;
+  }
+
+  .site-header__brand {
+    gap: 0.6rem;
+    font-size: 1.05rem;
+  }
+
+  .site-header__brand img {
+    width: 2.45rem;
+    height: 2.45rem;
   }
 
   .site-header p {

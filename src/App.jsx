@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
+import avesEntreNosotrosImage from './assets/aves-entre-nosotros.png'
+import uaoLogo from './assets/uao-logo.png'
 import atrapamoscasImage from './assets/birds/atrapamoscas-pechirrojo.jpg'
 import bichofueImage from './assets/birds/bichofue-griton.jpg'
 import colibriImage from './assets/birds/colibri-cola-canela.jpg'
@@ -383,7 +385,8 @@ function App() {
     <div className="site-shell">
       <header className="site-header" id="inicio">
         <a className="site-header__brand" href="#inicio" aria-label="Ir al inicio">
-          Aves de Cali
+          <img aria-hidden="true" src={uaoLogo} alt="" />
+          <span>Aves de Cali</span>
         </a>
         <p>Proyecto académico</p>
       </header>
@@ -420,7 +423,12 @@ function App() {
           <section className="birds-hero" aria-labelledby="gallery-title">
             <div className="birds-section__header">
               <p className="eyebrow">Guía de avistamiento · Cali</p>
-              <h1 id="gallery-title">Aves que viven entre nosotros</h1>
+              <h1 className="birds-section__title" id="gallery-title">
+                <img
+                  alt="Aves entre nosotros"
+                  src={avesEntreNosotrosImage}
+                />
+              </h1>
               <p className="birds-section__intro">
                 Acércate a cada tarjeta para descubrir cuatro especies que llenan de
                 color y sonido nuestros paisajes.
