@@ -829,6 +829,7 @@
     opacity 420ms 80ms ease,
     transform 500ms 80ms ease;
   -webkit-box-orient: vertical;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
 }
 

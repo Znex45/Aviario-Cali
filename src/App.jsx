@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import 'leaflet/dist/leaflet.css'
+import './leafletIcons'
+import BirdMap from './BirdMap'
 
 import avesEntreNosotrosImage from './assets/aves-entre-nosotros.png'
 import uaoLogo from './assets/uao-logo.png'
@@ -43,11 +46,15 @@ const birds = [
         name: 'Ecoparque Río Pance',
         note: 'Vegetación ribereña y áreas suburbanas con alta diversidad de aves.',
         url: 'https://ecopedia.cvc.gov.co/node/363',
+            lat: 3.3325, // aproximado (sector Pance, km 12-15 vía La Vorágine)
+          lng: -76.5563,
       },
       {
-        name: 'Pance y zona de influencia de Farallones',
-        note: 'Áreas abiertas y transición de bosque del piedemonte occidental.',
-        url: 'https://www.parquesnacionales.gov.co/nuestros-parques/pnn-farallones-de-cali/',
+     name: 'Zoológico de Cali / Bosque Municipal',
+      note: 'Bosque a orillas del río Cali con amplias zonas abiertas y arboladas dentro de la ciudad.',
+        url: 'https://www.zoologicodecali.com.co/',
+    lat: 3.4486, // verificado (Wikipedia: 3°26'55"N 76°33'31"W)
+    lng: -76.5586,
       },
     ],
     sources: [
@@ -89,11 +96,15 @@ const birds = [
         name: 'Ecoparque Río Pance',
         note: 'Bosques suburbanos, vegetación ribereña y claros favorables para colibríes.',
         url: 'https://ecopedia.cvc.gov.co/node/363',
+            lat: 3.3325, // aproximado
+    lng: -76.5563,
       },
       {
-        name: 'PNN Farallones de Cali',
-        note: 'Amplio gradiente altitudinal y alta diversidad de aves; el sector de Pance es de especial interés.',
-        url: 'https://www.parquesnacionales.gov.co/nuestros-parques/pnn-farallones-de-cali/',
+        name: 'Lago Universidad del Valle (Campus Meléndez)',
+    note: 'Zonas verdes y jardines con floración constante, frecuentadas por colibríes dentro del campus.',
+    url: 'https://www.univalle.edu.co/',
+    lat: 3.3750, // verificado (Wikipedia)
+    lng: -76.5345,
       },
     ],
     sources: [
@@ -132,14 +143,18 @@ const birds = [
       'Es una de las especies de Cali que aprovechan recursos urbanos y es común en ambientes abiertos; por ello es de las más fáciles de detectar.',
     places: [
       {
-        name: 'Ecoparque Río Pance',
-        note: 'El ecoparque registra una alta diversidad y facilita la observación de aves en ambientes suburbanos y ribereños.',
-        url: 'https://ecopedia.cvc.gov.co/node/363',
+      name: 'Humedal Charco Azul',
+    note: 'Humedal urbano en el oriente de Cali con más de 55 especies de aves registradas, entre ellas el bichofué.',
+    url: 'https://www.cali.gov.co/dagma/publicaciones/167210/humedal-charco-azul-un-lugar-ideal-para-el-avistamiento-de-aves-en-el-oriente-de-cali/',
+    lat: 3.4550, // aproximado (Av. Ciudad de Cali, Comuna 13, sector oriente)
+    lng: -76.4950,
       },
       {
-        name: 'Parques y zonas verdes urbanas de Cali',
-        note: 'Tolera ambientes urbanos, especialmente donde hay árboles, áreas abiertas y cuerpos de agua cercanos.',
-        url: 'https://www.icesi.edu.co/editorial/aves-de-cali/',
+    name: 'Zoológico de Cali / Bosque Municipal',
+    note: 'Especie muy adaptable a ambientes urbanos arbolados y cercanos a cuerpos de agua.',
+    url: 'https://www.zoologicodecali.com.co/',
+    lat: 3.4486, // verificado
+    lng: -76.5586,
       },
     ],
     sources: [
@@ -178,14 +193,18 @@ const birds = [
       'Es abundante y de hábitos adaptables, pero para esta guía se priorizan los espacios naturales y jardines con flores.',
     places: [
       {
-        name: 'Ecoparque Río Pance',
-        note: 'La vegetación ribereña y los fragmentos de bosque ofrecen recursos para aves nectarívoras.',
-        url: 'https://ecopedia.cvc.gov.co/node/363',
+    name: 'Ecoparque Río Pance',
+    note: 'Bosques secundarios y jardines con arbustos florecidos, hábitat típico de esta especie nectarívora.',
+    url: 'https://ecopedia.cvc.gov.co/node/363',
+    lat: 3.3325, // aproximado
+    lng: -76.5563,
       },
       {
-        name: 'PNN Farallones de Cali y su zona de influencia',
-        note: 'Alta diversidad de hábitats y flora; el parque es un destino para observación de aves.',
-        url: 'https://www.parquesnacionales.gov.co/nuestros-parques/pnn-farallones-de-cali/',
+    name: 'Lago Universidad del Valle (Campus Meléndez)',
+    note: 'Zonas verdes con flora ornamental que atrae aves nectarívoras dentro del campus universitario.',
+    url: 'https://www.univalle.edu.co/',
+    lat: 3.3750, // verificado
+    lng: -76.5345,
       },
     ],
     sources: [
@@ -409,19 +428,20 @@ function BirdDetails({ bird, isOpen, onBack }) {
             </a>
           </section>
 
-          <section className="detail-section">
-            <h3>¿Dónde observarla en Cali?</h3>
-            <div className="observation-places">
-              {bird.places.map((place) => (
-                <a key={place.name} className="observation-place" href={place.url} target="_blank" rel="noreferrer">
-                  <strong>{place.name}</strong>
-                  <span>{place.note}</span>
-                  <small>Consultar información del sitio ↗</small>
-                </a>
-              ))}
-            </div>
-          </section>
 
+<section className="detail-section">
+  <h3>¿Dónde observarla en Cali?</h3>
+  <BirdMap places={bird.places} />
+  <div className="observation-places">
+    {bird.places.map((place) => (
+      <a key={place.name} className="observation-place" href={place.url} target="_blank" rel="noreferrer">
+        <strong>{place.name}</strong>
+        <span>{place.note}</span>
+        <small>Consultar información del sitio ↗</small>
+      </a>
+    ))}
+  </div>
+</section>
           <section className="detail-section">
             <h3>Probabilidad de avistamiento</h3>
             <div className="sighting-summary">
