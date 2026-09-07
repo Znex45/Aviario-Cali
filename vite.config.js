@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
-  base: '/aves-entre-nosotros/',
+  base: '/Aviario-Cali/',
 })
