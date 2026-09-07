@@ -34,10 +34,10 @@ const birds = [
     videoTitle: 'Vermilion Flycatcher (Pyrocephalus rubinus)',
     videoSource: 'YouTube',
     videoSourceUrl: 'https://www.youtube.com/watch?v=_8kToUL0MjE',
-    audioEmbed: 'https://macaulaylibrary.org/audio/188210',
-    audioTitle: 'Vermilion Flycatcher — canto',
-    audioSource: 'Macaulay Library · ML188210',
-    audioSourceUrl: 'https://macaulaylibrary.org/asset/188210',
+    audioEmbed: 'https://xeno-canto.org/425867/embed',
+    audioTitle: 'Atrapamoscas pechirrojo — canto registrado en Ibagué, Colombia',
+    audioSource: 'Xeno-canto · XC425867 · Yair Guillermo Molina Martínez · CC BY-NC-SA 4.0 · catalogado como Pyrocephalus obscurus',
+    audioSourceUrl: 'https://xeno-canto.org/425867',
     observationLevel: 'Media',
     observationText:
       'Más favorable en espacios verdes y bordes abiertos; la guía de Cali la clasifica entre las especies que requieren espacios de naturaleza.',
@@ -50,11 +50,18 @@ const birds = [
           lng: -76.5563,
       },
       {
-     name: 'Zoológico de Cali / Bosque Municipal',
-      note: 'Bosque a orillas del río Cali con amplias zonas abiertas y arboladas dentro de la ciudad.',
+        name: 'Zoológico de Cali / Bosque Municipal',
+        note: 'Bosque a orillas del río Cali con amplias zonas abiertas y arboladas dentro de la ciudad.',
         url: 'https://www.zoologicodecali.com.co/',
-    lat: 3.4486, // verificado (Wikipedia: 3°26'55"N 76°33'31"W)
-    lng: -76.5586,
+        lat: 3.4486, // verificado (Wikipedia: 3°26'55"N 76°33'31"W)
+        lng: -76.5586,
+      },
+      {
+        name: 'Humedal La Babilla – Zanjón del Burro',
+        note: 'El inventario turístico municipal menciona al pechirojo entre las aves presentes en este humedal urbano.',
+        url: 'https://idesc.cali.gov.co/download/turismo/recursos_zonas/RT-32-C22p.pdf',
+        lat: 3.3625,
+        lng: -76.5367,
       },
     ],
     sources: [
@@ -62,6 +69,7 @@ const birds = [
       { label: 'Guía ilustrada de aves de Cali — CVC', url: 'https://ecopedia.cvc.gov.co/sites/default/files/archivosAdjuntos/libro_de_aves_de_cali.pdf' },
       { label: 'Universidad Icesi — Aves de Cali', url: 'https://www.icesi.edu.co/editorial/aves-de-cali/' },
       { label: 'Cornell Lab — Aves de Sibundoy', url: 'https://www.birds.cornell.edu/latam/wp-content/uploads/2023/09/Aves-de-sibundoy-2014-1.pdf' },
+      { label: 'Inventario turístico de Cali — Humedal La Babilla', url: 'https://idesc.cali.gov.co/download/turismo/recursos_zonas/RT-32-C22p.pdf' },
     ],
   },
   {
@@ -200,11 +208,18 @@ const birds = [
     lng: -76.5563,
       },
       {
-    name: 'Lago Universidad del Valle (Campus Meléndez)',
-    note: 'Zonas verdes con flora ornamental que atrae aves nectarívoras dentro del campus universitario.',
-    url: 'https://www.univalle.edu.co/',
-    lat: 3.3750, // verificado
-    lng: -76.5345,
+        name: 'Lago Universidad del Valle (Campus Meléndez)',
+        note: 'Zonas verdes con flora ornamental que atrae aves nectarívoras dentro del campus universitario.',
+        url: 'https://www.univalle.edu.co/',
+        lat: 3.3750, // verificado
+        lng: -76.5345,
+      },
+      {
+        name: 'Ecoparque Lago de las Garzas',
+        note: 'Un censo divulgado por la Alcaldía de Cali registró al mielero común entre las aves de este humedal urbano.',
+        url: 'https://web1.cali.gov.co/publicaciones.php?id=116237',
+        lat: 3.3319,
+        lng: -76.537,
       },
     ],
     sources: [
@@ -212,6 +227,7 @@ const birds = [
       { label: 'Cornell Lab — All About Birds', url: 'https://www.allaboutbirds.org/guide/Bananaquit/lifehistory' },
       { label: 'Universidad Icesi — Aves de Cali', url: 'https://www.icesi.edu.co/editorial/aves-de-cali/' },
       { label: 'Animal Diversity Web', url: 'https://animaldiversity.org/accounts/Coereba_flaveola/' },
+      { label: 'Alcaldía de Cali — Aves del Lago de las Garzas', url: 'https://web1.cali.gov.co/publicaciones.php?id=116237' },
     ],
   },
 ]
@@ -429,19 +445,24 @@ function BirdDetails({ bird, isOpen, onBack }) {
           </section>
 
 
-<section className="detail-section">
-  <h3>¿Dónde observarla en Cali?</h3>
-  <BirdMap places={bird.places} />
-  <div className="observation-places">
-    {bird.places.map((place) => (
-      <a key={place.name} className="observation-place" href={place.url} target="_blank" rel="noreferrer">
-        <strong>{place.name}</strong>
-        <span>{place.note}</span>
-        <small>Consultar información del sitio ↗</small>
-      </a>
-    ))}
-  </div>
-</section>
+          <section className="detail-section">
+            <h3>¿Dónde observarla en Cali?</h3>
+            <BirdMap places={bird.places} />
+            <div className="observation-places">
+              {bird.places.map((place, index) => (
+                <a key={place.name} className="observation-place" href={place.url} target="_blank" rel="noreferrer">
+                  <span className="observation-place__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="observation-place__content">
+                    <strong>{place.name}</strong>
+                    <span>{place.note}</span>
+                    <small>Consultar información del sitio ↗</small>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
           <section className="detail-section">
             <h3>Probabilidad de avistamiento</h3>
             <div className="sighting-summary">
