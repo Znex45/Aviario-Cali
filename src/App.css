@@ -829,6 +829,7 @@
     opacity 420ms 80ms ease,
     transform 500ms 80ms ease;
   -webkit-box-orient: vertical;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
 }
 
@@ -1064,4 +1065,278 @@
   .bird-card__image {
     transform: scale(1.06);
   }
+}
+
+.media-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid rgba(130, 115, 110, 0.42);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: #000;
+}
+
+.media-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.media-embed--audio {
+  aspect-ratio: auto;
+  min-height: 110px;
+  background: var(--md-sys-color-surface-container);
+}
+
+.media-embed--audio iframe {
+  min-height: 110px;
+}
+
+.media-credit {
+  display: inline-block;
+  margin-top: 0.65rem;
+  color: var(--uao-grey);
+  font-size: 0.76rem;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.media-credit:hover {
+  text-decoration: underline;
+}
+
+.media-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.observation-places {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.observation-place {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.8rem;
+  padding: 1rem;
+  border: 1px solid var(--uao-border);
+  border-radius: var(--md-sys-shape-corner-medium);
+  text-decoration: none;
+  color: inherit;
+  background: var(--md-sys-color-surface-container);
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.observation-place:hover,
+.observation-place:focus-visible {
+  border-color: rgba(141, 16, 21, 0.45);
+  background: var(--md-sys-color-primary-container);
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.observation-place__number {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--md-sys-color-on-primary);
+  background: var(--md-sys-color-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.observation-place__content {
+  display: grid;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+.observation-place__content > span,
+.observation-place__content small {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.observation-place__content > span {
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.observation-place__content small {
+  font-size: 0.72rem;
+}
+
+.observation-map {
+  margin-bottom: 1rem;
+}
+
+.observation-map__canvas {
+  width: 100%;
+  height: 17.5rem;
+  border: 1px solid var(--uao-border);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container);
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.observation-map__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-top: 0.7rem;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.observation-map__legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+}
+
+.map-legend-dot {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+}
+
+.map-legend-dot--observation {
+  background: var(--uao-red);
+  box-shadow: 0 0 0 2px var(--uao-wine);
+}
+
+.map-legend-dot--reference {
+  border: 2px solid var(--uao-wine);
+  background: var(--md-sys-color-surface);
+}
+
+.observation-map__note {
+  margin: 0.55rem 0 0;
+  color: var(--uao-grey-muted);
+  font-size: 0.68rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.bird-map-marker {
+  border: 0;
+  background: transparent;
+}
+
+.bird-map-marker__pin {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 2px solid var(--uao-wine);
+  border-radius: 50% 50% 50% 0;
+  background: var(--uao-red);
+  box-shadow: 0 0.2rem 0.5rem rgba(81, 6, 8, 0.28);
+  transform: rotate(-45deg);
+}
+
+.bird-map-marker__label {
+  color: #ffffff;
+  font-family: var(--md-sys-font-body);
+  font-size: 0.75rem;
+  font-style: normal;
+  line-height: 1;
+  transform: rotate(45deg);
+}
+
+.bird-map-marker--reference .bird-map-marker__pin {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-color: var(--uao-wine);
+  background: var(--md-sys-color-surface);
+  box-shadow: 0 0.15rem 0.4rem rgba(81, 6, 8, 0.2);
+}
+
+.bird-map-marker--reference .bird-map-marker__label {
+  color: var(--uao-wine);
+  font-size: 1rem;
+}
+
+.bird-map-popup .leaflet-popup-content-wrapper {
+  border-radius: var(--md-sys-shape-corner-medium);
+  color: var(--md-sys-color-on-surface);
+  background: var(--md-sys-color-surface);
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.bird-map-popup .leaflet-popup-content {
+  display: grid;
+  min-width: min(13rem, 55vw);
+  gap: 0.4rem;
+  margin: 1rem;
+  font-family: var(--md-sys-font-body);
+  line-height: 1.4;
+}
+
+.bird-map-popup .leaflet-popup-content strong {
+  color: var(--uao-wine);
+  font-size: 0.88rem;
+}
+
+.bird-map-popup .leaflet-popup-content p {
+  margin: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.76rem;
+}
+
+.bird-map-popup .leaflet-popup-content a {
+  color: var(--md-sys-color-primary);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-underline-offset: 2px;
+}
+
+.bird-map-popup__eyebrow {
+  color: var(--uao-red);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bird-map-popup .leaflet-popup-tip {
+  background: var(--md-sys-color-surface);
+}
+
+.sighting-summary {
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.045);
+}
+
+.sighting-summary strong {
+  font-size: 1.15rem;
+}
+
+.sighting-summary p {
+  margin: 0.45rem 0 0;
+  opacity: 0.82;
+}
+
+.source-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.source-list a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.source-list p {
+  margin: 0.35rem 0 0;
+  opacity: 0.7;
 }
